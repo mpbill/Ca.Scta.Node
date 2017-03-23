@@ -5,11 +5,12 @@ import {Router, browserHistory} from 'react-router';
 import './global.scss';
 import {syncHistoryWithStore} from 'react-router-redux';
 import routes from './routes';
-import configureStore from './store/configureStore';
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory,store);
+import { ApolloClient, createNetworkInterface,ApolloProvider } from 'react-apollo';
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({ uri: 'http://localhost:3000/graphql' }),
+});
 render(
-  <Provider store={store}>
-    <Router history={history} routes={routes}/>
-  </Provider>
+  <ApolloProvider client={client}>
+    <Router history={browserHistory} routes={routes}/>
+  </ApolloProvider>
 ,document.getElementById('app'));

@@ -2,11 +2,13 @@
  * Created by michael.billingham on 3/14/2017.
  */
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 import App from './components/App';
-import LoginPage from './pages/login-page';
+import PositionsPage from './pages/positions-page';
+import EditPositionWithData from './pages/edit-position';
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={LoginPage}/>
+    <Route component={PositionsPage} path="/positions"/>
+    <Route component={EditPositionWithData} path="/positions/:id"/>
   </Route>
 )

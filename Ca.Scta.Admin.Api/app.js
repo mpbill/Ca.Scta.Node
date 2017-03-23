@@ -19,9 +19,9 @@ let app = express();
 let pool = require('./connection/connection');
 let auth = require('./routes/auth');
 let jwt = require('jsonwebtoken');
+let cors = require('cors');
 let getAllPositions = function (args,request,resp) {
     return new Promise(function (resolve,reject) {
-        resp.send(500);
         pool.getConnection(function (err, connection) {
             connection.query("SELECT * FROM positions",function (error, results, fields) {
                 if(error){
@@ -32,6 +32,19 @@ let getAllPositions = function (args,request,resp) {
 
             });
 
+        });
+    });
+};
+let getPositionById = function ({id}) {
+    return new Promise(function (resolve, reject) {
+        pool.getConnection(function (err, connection) {
+            if(err)
+                reject();
+            connection.query("SELECT * FROM positions WHERE Id=?",[id],function (error, results, fields) {
+                if(error)
+                    reject();
+                resolve(results[0]);
+            });
         });
     });
 };
@@ -101,23 +114,25 @@ let createPosition = function({position}){
     });
 };
 
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/auth',auth);
-app.use(function (req, resp, next) {
-    var token = req.cookies["cascta_token"];
-    jwt.verify(token,'secret',function (err,decoded) {
-        if(!err){
-            req.user = {
-                id:decoded.userId,
-                username:decoded.username
-            };
-        }
-    });
-});
+// app.use('/auth',auth);
+// app.use(function (req, resp, next) {
+//     var token = req.cookies["cascta_token"];
+//     jwt.verify(token,'secret',function (err,decoded) {
+//         if(!err){
+//             req.user = {
+//                 id:decoded.userId,
+//                 username:decoded.username
+//             };
+//             next();
+//         }
+//
+//     });
+// });
 
 let schema = buildSchema(`
 type Position {
@@ -140,6 +155,7 @@ input NewPositionInput{
 }
 type Query {
   getAllPositions : [Position]
+  getPositionById(id:Int!):Position
 }
 type Mutation {
   updatePosition(position:PositionUpdateInput!) : Position
@@ -155,6 +171,7 @@ let Position = {
 };
 let root = {
     getAllPositions:getAllPositions,
+    getPositionById:getPositionById,
     updatePosition:updatePosition,
     createPosition:createPosition,
     deletePosition:deletePosition
