@@ -5,10 +5,11 @@ import React from 'react';
 import { Route } from 'react-router';
 import App from './components/App';
 import PositionsPage from './pages/positions-page';
-import EditPositionWithData from './pages/edit-position';
+import * as positionMods from './pages/edit-position';
 export default (
   <Route path="/" component={App}>
     <Route component={PositionsPage} path="/positions"/>
-    <Route component={EditPositionWithData} path="/positions/:id"/>
+    <Route component={positionMods.NewPositionWithData} path="/newPosition"/>
+    <Route component={positionMods.EditPositionWithData} path="/positions/:id"/>
   </Route>
 )

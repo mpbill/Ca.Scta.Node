@@ -20,96 +20,66 @@ let pool = require('./connection/connection');
 let auth = require('./routes/auth');
 let jwt = require('jsonwebtoken');
 let cors = require('cors');
+let MongoClient = require('mongodb').MongoClient;
+let ObjectId = require('mongodb').ObjectId;
+let url = "mongodb://localhost:27017/scta";
+
 let getAllPositions = function (args,request,resp) {
     return new Promise(function (resolve,reject) {
         pool.getConnection(function (err, connection) {
+            console.log(err);
             connection.query("SELECT * FROM positions",function (error, results, fields) {
-                if(error){
-                    reject();
-                }
-                resolve(results);
                 connection.release();
+                resolve(results);
 
             });
-
         });
+
     });
 };
 let getPositionById = function ({id}) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve,reject) {
         pool.getConnection(function (err, connection) {
-            if(err)
-                reject();
-            connection.query("SELECT * FROM positions WHERE Id=?",[id],function (error, results, fields) {
-                if(error)
-                    reject();
+            connection.query("SELECT * FROM positions where id=?",[id],function (error, results, fields) {
+                connection.release();
                 resolve(results[0]);
+
             });
         });
+
     });
 };
 let updatePosition = function ({position}) {
+    console.log(position._id);
     return new Promise(function (resolve,reject) {
         pool.getConnection(function (err, connection) {
-            connection.query(
-                "UPDATE positions SET PositionEmail=?, PositionName=?, VolunteerName=? WHERE Id=?;",
-                [position.PositionEmail,position.PositionName,position.VolunteerName,position.Id],
-                function (error, results, fields) {
-                    if(error){
-                        reject();
-                    }
-                    resolve(position);
-                    connection.release();
-
-                });
-
+            connection.query("update positions set positionName=?,positionEmail=?,volunteerName=? WHERE id=?",[position.positionName,position.positionEmail,position.volunteerName,id],function (error, results, fields) {
+                connection.release();
+                resolve(position);
+            });
         });
     });
 };
 let deletePosition = function({id}){
     return new Promise(function (resolve,reject) {
         pool.getConnection(function (err, connection) {
-            connection.query(
-                "DELETE from positions where Id=?;",
-                [id],
-                function (error, results, fields) {
-                    if(error){
-                        reject();
-                    }
-                    if(results.affectedRows==0){
-                        reject();
-                    }
-                    resolve(id);
-                    connection.release();
-
-                });
-
+            connection.query("delete from positions where id=?;",[id],function (error, results, fields) {
+                connection.release();
+                resolve();
+            });
         });
     });
 };
 let createPosition = function({position}){
     return new Promise(function (resolve,reject) {
         pool.getConnection(function (err, connection) {
-            connection.query(
-                "INSERT INTO positions(PositionName,VolunteerName,PositionEmail) VALUES (?,?,?);",
-                [position.PositionName,position.VolunteerName,position.PositionEmail],
-                function (error, results, fields) {
-                    if(error){
-                        reject();
-                    }
-                    if(results.affectedRows==0){
-                        reject();
-                    }
-                    resolve({
-                        Id:results.insertId,
-                        PositionName:position.PositionName,
-                        PositionEmail:position.PositionEmail,
-                        VolunteerName:position.VolunteerName
-                    });
-                    connection.release();
-
-                });
-
+            connection.query("insert into positions (positionName,positionEmail,volunteerName) values (?,?,?);",[position.positionName,position.positionEmail,position.volunteerName],function (error, results, fields) {
+                connection.release();
+                position.id=results.insertId;
+                console.log(error);
+                console.log(results);
+                resolve(position);
+            });
         });
     });
 };
@@ -136,22 +106,22 @@ app.use(cookieParser());
 
 let schema = buildSchema(`
 type Position {
-  Id:Int!
-  PositionName:String!
-  VolunteerName:String!
-  PositionEmail:String!
+  id:Int!
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
   
 }
 input PositionUpdateInput{
-  Id:Int!
-  PositionName:String!
-  VolunteerName:String!
-  PositionEmail:String!
+  id:Int!
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
 }
 input NewPositionInput{
-  PositionName:String!
-  VolunteerName:String!
-  PositionEmail:String!
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
 }
 type Query {
   getAllPositions : [Position]
@@ -160,22 +130,15 @@ type Query {
 type Mutation {
   updatePosition(position:PositionUpdateInput!) : Position
   createPosition(position:NewPositionInput!):Position
-  deletePosition(id:Int!):Int!
+  deletePosition(id:Int!):String
 }
 `);
-let Position = {
-    Id:0,
-    PositionName:"",
-    VolunteerName:"",
-    PositionEmail:""
-};
 let root = {
     getAllPositions:getAllPositions,
     getPositionById:getPositionById,
     updatePosition:updatePosition,
     createPosition:createPosition,
     deletePosition:deletePosition
-
 };
 
 

@@ -2,7 +2,7 @@
  * Created by mpbil on 3/22/2017.
  */
 import React,{Component} from 'react';
-import { gql, graphql } from 'react-apollo';
+import { gql, graphql,compose } from 'react-apollo';
 import {Link} from 'react-router';
 
 class PositionsPage extends Component {
@@ -13,16 +13,18 @@ class PositionsPage extends Component {
     this.deletePosition = this.deletePosition.bind(this);
   }
   deletePosition(id){
-    console.log(id);
+    this.props.mutate({variables:{id:id}}).then(()=>{
+      this.props.data.refetch();
+    })
 
   }
   positionRow(position){
-    let boundDeletePosition = this.deletePosition.bind(this,position.Id);
-    let editLink = "/positions/" + position.Id;
+    let boundDeletePosition = this.deletePosition.bind(this,position.id);
+    let editLink = "/positions/" + position.id;
     return (
-      <tr key={position.Id}>
-        <td>{position.PositionName}</td>
-        <td>{position.VolunteerName}</td>
+      <tr key={position._id}>
+        <td>{position.positionName}</td>
+        <td>{position.volunteerName}</td>
         <td>
           <Link to={editLink} className="button is-primary">Edit</Link>
           <button className="button is-danger" onClick={boundDeletePosition} >Delete</button>
@@ -33,6 +35,7 @@ class PositionsPage extends Component {
   positionTable(positions){
     let positionRows = positions.map(this.positionRow);
     return (
+      <div className="container">
       <table className="table">
         <thead>
         <tr>
@@ -43,8 +46,10 @@ class PositionsPage extends Component {
         </thead>
         <tbody>
         {positionRows}
+        <tr><td/><td/><td><Link to={"/newPosition"} className="button is-primary">New</Link></td></tr>
         </tbody>
       </table>
+      </div>
     )
   }
   render(){
@@ -61,13 +66,19 @@ class PositionsPage extends Component {
 const GetPositionsQuery = gql`
 query getPositions{
   getAllPositions{
-    Id,
-    PositionName,
-    VolunteerName,
-    PositionEmail
+    id,
+    positionName,
+    volunteerName,
+    positionEmail
   }
 }
 `;
-
-let PositionsPageWithData = graphql(GetPositionsQuery)(PositionsPage);
+const DeletePositionMutation = gql`
+mutation deletePosition($id:Int!){
+  deletePosition(id:$id)
+}`;
+let PositionsPageWithData = compose(
+  graphql(GetPositionsQuery),
+  graphql(DeletePositionMutation)
+)(PositionsPage);
 export default PositionsPageWithData;

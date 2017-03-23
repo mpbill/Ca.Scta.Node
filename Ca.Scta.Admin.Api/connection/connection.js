@@ -4,8 +4,9 @@
 var mysql = require('mysql');
 module.exports = mysql.createPool({
     connectionLimit : 2,
-    host            : 'localhost',
-    user            : 'root',
-    password        : 'password',
-    database        : 'ca.scta.db'
+    host: 'localhost',
+    port: 3307,
+    user: 'root',
+    password: 'password',
+    database: 'scta'
 });
