@@ -1,0 +1,8 @@
+query getPositionById($id:Int!){
+  getPositionById(id:$id){
+    id,
+    positionName,
+    volunteerName,
+    positionEmail
+  }
+}

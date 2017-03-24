@@ -1,0 +1,8 @@
+mutation updatePositionMutation($position: PositionUpdateInput!) {
+  updatePosition(position: $position) {
+    id
+    positionName
+    volunteerName
+    positionEmail
+  }
+}

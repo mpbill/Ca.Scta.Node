@@ -1,0 +1,8 @@
+query getAllHotlines{
+    getAllHotlines{
+        id
+        areaCode
+        exchangeCode
+        subscriberNumber
+    }
+}

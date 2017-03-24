@@ -1,0 +1,47 @@
+type Position {
+  id:Int!
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
+  
+}
+input PositionUpdateInput{
+  id:Int!
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
+}
+input NewPositionInput{
+  positionName:String!
+  volunteerName:String!
+  positionEmail:String!
+}
+type Hotline{
+  id:Int!
+  areaCode:String!
+  exchangeCode:String!
+  subscriberNumber:String!
+}
+input HotlineInput{
+  areaCode:String!
+  exchangeCode:String!
+  subscriberNumber:String!
+}
+
+
+type Query {
+  getAllPositions:[Position]
+  getPositionById(id:Int!):Position
+  getAllHotlines:[Hotline]
+  getHotlineById(id:Int!):Hotline
+
+
+}
+type Mutation {
+  updatePosition(position:PositionUpdateInput!) : Position
+  createPosition(position:NewPositionInput!):Position
+  deletePosition(id:Int!):String
+  createHotline(hotline:HotlineInput!):Hotline
+  updateHotline(id:Int!,hotline:HotlineInput!):Hotline
+  deleteHotline(id:Int!):Int  
+}

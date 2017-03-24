@@ -4,7 +4,8 @@
 import React,{Component} from 'react';
 import { gql, graphql,compose } from 'react-apollo';
 import {Link} from 'react-router';
-
+import GetPositionsQuery from '../graphql/getAllPositions.query.gql'
+import DeletePositionMutation from '../graphql/deletePosition.mutation.gql';
 class PositionsPage extends Component {
   constructor(props){
     super(props);
@@ -22,7 +23,7 @@ class PositionsPage extends Component {
     let boundDeletePosition = this.deletePosition.bind(this,position.id);
     let editLink = "/positions/" + position.id;
     return (
-      <tr key={position._id}>
+      <tr key={position.id}>
         <td>{position.positionName}</td>
         <td>{position.volunteerName}</td>
         <td>
@@ -62,21 +63,12 @@ class PositionsPage extends Component {
     }
 
   }
-}
-const GetPositionsQuery = gql`
-query getPositions{
-  getAllPositions{
-    id,
-    positionName,
-    volunteerName,
-    positionEmail
+  componentDidMount(){
+    if(!this.props.data.loading){
+      this.props.data.refetch();
+    }
   }
 }
-`;
-const DeletePositionMutation = gql`
-mutation deletePosition($id:Int!){
-  deletePosition(id:$id)
-}`;
 let PositionsPageWithData = compose(
   graphql(GetPositionsQuery),
   graphql(DeletePositionMutation)

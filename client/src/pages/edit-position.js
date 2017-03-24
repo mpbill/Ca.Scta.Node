@@ -6,7 +6,8 @@ import { gql, graphql,compose } from 'react-apollo';
 import {Link} from 'react-router';
 let classNames = require('classnames');
 import {browserHistory} from 'react-router';
-
+import UpdatePositionMutation from '../graphql/updatePosition.mutation.gql';
+import GetPositionByIdQuery from '../graphql/getPositionById.query.gql'
 const form = (that)=>(
   <div>
     <div className="field">
@@ -34,9 +35,17 @@ const form = (that)=>(
 class NewPosition extends Component {
   constructor(props){
     super(props);
-    this.state={isLoading:false,position:{}};
+    this.state={
+      isLoading:false,
+      position:{
+        positionName:"",
+        positionEmail:"",
+        volunteerName:""
+      }
+    };
     this.createClicked=this.createClicked.bind(this);
     this.userInput = this.userInput.bind(this);
+    
   }
   userInput(e){
     let name = e.target.name;
@@ -49,7 +58,7 @@ class NewPosition extends Component {
   }
   createClicked(){
     this.setState({isLoading:true},function () {
-      this.props.mutate({variables:{position:this.state.position}}).then(function () {
+      this.props.submit(this.state.position).then(function () {
         browserHistory.push('/positions');
 
       })
@@ -78,7 +87,28 @@ mutation newPositionMutation($position: NewPositionInput!) {
   }
 }
 `;
-let NewPositionWithData = graphql(NewPositionMutation)(NewPosition);
+let NewPositionWithData = graphql(NewPositionMutation,{
+  props({ ownProps, mutate }) {
+    return {
+      submit(position) {
+        return mutate({
+          variables: {position:position},
+          refetchQueries: [{
+            query: gql`
+                    query getPositions{
+                      getAllPositions{
+                        id,
+                        positionName,
+                        volunteerName,
+                        positionEmail
+                      }
+                    }`,
+          }],
+        });
+      },
+    };
+  }
+})(NewPosition);
 
 class EditPositionForm extends Component {
   constructor(props){
@@ -138,26 +168,6 @@ class EditPosition extends Component{
     )
   }
 }
-const GetPositionByIdQuery = gql`
-query getPositionById($id:Int!){
-  getPositionById(id:$id){
-    id,
-    positionName,
-    volunteerName,
-    positionEmail
-  }
-}
-
-`;
-const UpdatePositionMutation = gql`
-mutation updatePositionQuery($position: PositionUpdateInput!) {
-  updatePosition(position: $position) {
-    id
-    positionName
-    volunteerName
-    positionEmail
-  }
-}`;
 
 
 let EditPositionWithData = compose(

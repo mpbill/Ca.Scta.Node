@@ -1,0 +1,8 @@
+query getPositions{
+  getAllPositions{
+    id,
+    positionName,
+    volunteerName,
+    positionEmail
+  }
+}

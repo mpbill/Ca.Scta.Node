@@ -23,66 +23,8 @@ let cors = require('cors');
 let MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectId;
 let url = "mongodb://localhost:27017/scta";
+let schema = require("./schema/schema");
 
-let getAllPositions = function (args,request,resp) {
-    return new Promise(function (resolve,reject) {
-        pool.getConnection(function (err, connection) {
-            console.log(err);
-            connection.query("SELECT * FROM positions",function (error, results, fields) {
-                connection.release();
-                resolve(results);
-
-            });
-        });
-
-    });
-};
-let getPositionById = function ({id}) {
-    return new Promise(function (resolve,reject) {
-        pool.getConnection(function (err, connection) {
-            connection.query("SELECT * FROM positions where id=?",[id],function (error, results, fields) {
-                connection.release();
-                resolve(results[0]);
-
-            });
-        });
-
-    });
-};
-let updatePosition = function ({position}) {
-    console.log(position._id);
-    return new Promise(function (resolve,reject) {
-        pool.getConnection(function (err, connection) {
-            connection.query("update positions set positionName=?,positionEmail=?,volunteerName=? WHERE id=?",[position.positionName,position.positionEmail,position.volunteerName,id],function (error, results, fields) {
-                connection.release();
-                resolve(position);
-            });
-        });
-    });
-};
-let deletePosition = function({id}){
-    return new Promise(function (resolve,reject) {
-        pool.getConnection(function (err, connection) {
-            connection.query("delete from positions where id=?;",[id],function (error, results, fields) {
-                connection.release();
-                resolve();
-            });
-        });
-    });
-};
-let createPosition = function({position}){
-    return new Promise(function (resolve,reject) {
-        pool.getConnection(function (err, connection) {
-            connection.query("insert into positions (positionName,positionEmail,volunteerName) values (?,?,?);",[position.positionName,position.positionEmail,position.volunteerName],function (error, results, fields) {
-                connection.release();
-                position.id=results.insertId;
-                console.log(error);
-                console.log(results);
-                resolve(position);
-            });
-        });
-    });
-};
 
 app.use(cors());
 app.use(logger('dev'));
@@ -103,43 +45,10 @@ app.use(cookieParser());
 //
 //     });
 // });
-
-let schema = buildSchema(`
-type Position {
-  id:Int!
-  positionName:String!
-  volunteerName:String!
-  positionEmail:String!
-  
-}
-input PositionUpdateInput{
-  id:Int!
-  positionName:String!
-  volunteerName:String!
-  positionEmail:String!
-}
-input NewPositionInput{
-  positionName:String!
-  volunteerName:String!
-  positionEmail:String!
-}
-type Query {
-  getAllPositions : [Position]
-  getPositionById(id:Int!):Position
-}
-type Mutation {
-  updatePosition(position:PositionUpdateInput!) : Position
-  createPosition(position:NewPositionInput!):Position
-  deletePosition(id:Int!):String
-}
-`);
-let root = {
-    getAllPositions:getAllPositions,
-    getPositionById:getPositionById,
-    updatePosition:updatePosition,
-    createPosition:createPosition,
-    deletePosition:deletePosition
-};
+let root = Object.assign(
+    require('./graphql/positions'),
+    require('./graphql/hotlines')
+);
 
 
 app.use('/graphql',graphHTTP({
