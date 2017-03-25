@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/ca-scta.org/views/components/MainNav.jsx" line="0" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="eb9c2b6a-e523-4bc3-9250-a2155368059f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ca-scta.org/bin/www" afterPath="$PROJECT_DIR$/ca-scta.org/bin/www" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ca-scta.org/routes/index.js" afterPath="$PROJECT_DIR$/ca-scta.org/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ca-scta.org/views/index.jsx" afterPath="$PROJECT_DIR$/ca-scta.org/views/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css" afterPath="$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ca-scta.org/views/layout.jsx" afterPath="$PROJECT_DIR$/ca-scta.org/views/layout.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,14 +25,44 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="layout.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ca-scta.org/views/layout.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="77" column="46" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+            <state relative-caret-position="493">
+              <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainNav.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ca-scta.org/views/components/MainNav.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionLink.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ca-scta.org/views/components/ActionLink.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="twelveTraditions.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="twelveTraditions.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ca-scta.org/views/twelveTraditions.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="118" lean-forward="false" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
+            <state relative-caret-position="85">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -99,36 +129,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-scta.org/views/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="83" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flyers.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-scta.org/views/flyers.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="118" lean-forward="false" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hospitalsAndInstitutions.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ca-scta.org/views/hospitalsAndInstitutions.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="118" lean-forward="false" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -136,6 +136,7 @@
       <list>
         <option value="SQL" />
         <option value="JavaScript File" />
+        <option value="JSX" />
       </list>
     </option>
   </component>
@@ -191,13 +192,16 @@
         <option value="$PROJECT_DIR$/ca-scta.org/views/flyers.jsx" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/hospitalsAndInstitutions.jsx" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/newsletter.jsx" />
-        <option value="$PROJECT_DIR$/ca-scta.org/views/twelveTraditions.jsx" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/worldConvention.jsx" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/meeting.js" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/meetings.js" />
         <option value="$PROJECT_DIR$/ca-scta.org/routes/meetings.js" />
         <option value="$PROJECT_DIR$/ca-scta.org/routes/index.js" />
+        <option value="$PROJECT_DIR$/ca-scta.org/views/components/MainNav.jsx" />
+        <option value="$PROJECT_DIR$/ca-scta.org/views/components/ActionLink.jsx" />
         <option value="$PROJECT_DIR$/ca-scta.org/views/layout.jsx" />
+        <option value="$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css" />
+        <option value="$PROJECT_DIR$/ca-scta.org/views/twelveTraditions.jsx" />
       </list>
     </option>
   </component>
@@ -282,6 +286,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ca.Scta.Node" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ca.Scta.Node" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ca-scta.org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -468,12 +494,12 @@
       <workItem from="1490238190793" duration="6990000" />
       <workItem from="1490283311575" duration="21164000" />
       <workItem from="1490402241115" duration="2460000" />
-      <workItem from="1490423937552" duration="11598000" />
+      <workItem from="1490423937552" duration="13679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42212000" />
+    <option name="totallyTimeSpent" value="44293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -570,14 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="104" lean-forward="false" selection-start-line="5" selection-start-column="104" selection-end-line="5" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1156">
-          <caret line="1" column="2" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -684,14 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ca-scta.org/views/twelveTraditions.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="118" lean-forward="false" selection-start-line="7" selection-start-column="118" selection-end-line="7" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ca-scta.org/views/worldConvention.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -734,13 +744,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ca-scta.org/views/components/MainNav.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-scta.org/views/components/ActionLink.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ca-scta.org/views/layout.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="77" column="46" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="77" selection-end-column="46" />
+        <state relative-caret-position="493">
+          <caret line="31" column="22" lean-forward="false" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-scta.org/public/stylesheets/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ca-scta.org/views/twelveTraditions.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
