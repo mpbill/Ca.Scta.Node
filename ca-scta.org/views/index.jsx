@@ -44,12 +44,13 @@ class Index extends React.Component {
                             <h3>The Next Area Meeting</h3>
                             <p>
                                 {d.format("dddd MMMM d, YYYY \\a\\t H:mm a")}
-                                <address>
-                                    {this.props.nextAreaMeeting.address.name}<br/>
-                                    {this.props.nextAreaMeeting.address.street1}<br/>
-                                    {this.props.nextAreaMeeting.address.city}, {this.props.nextAreaMeeting.address.state} {this.props.nextAreaMeeting.address.zipCode}<br/>
-                                </address>
                             </p>
+                            <address>
+                                {this.props.nextAreaMeeting.address.name}<br/>
+                                {this.props.nextAreaMeeting.address.street1}<br/>
+                                {this.props.nextAreaMeeting.address.city}, {this.props.nextAreaMeeting.address.state} {this.props.nextAreaMeeting.address.zipCode}<br/>
+                            </address>
+
                             <div className="text-center">
                                 <a href={this.props.nextAreaMeeting.address.mapLink} className="btn btn-info">Map Link</a>
                             </div>

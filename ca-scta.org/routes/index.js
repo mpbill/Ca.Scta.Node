@@ -3,6 +3,8 @@ let router = express.Router();
 let meetingLinks = require('../mock-data/meeting-pages');
 let areaHotlines = require('../mock-data/area-hotlines');
 let nextAreaMeeting = require('../mock-data/next-area-meeting');
+let twelveSteps = require('../mock-data/twelve-steps');
+let twelveTraditions = require('../mock-data/twelve-traditions');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'CA-SCTA',meetingLinks:meetingLinks,areaHotlines:areaHotlines,nextAreaMeeting:nextAreaMeeting });
@@ -12,7 +14,10 @@ router.get('/contact',function (req,res,next) {
     res.render('contact',{title:'Contact',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url});
 });
 router.get('/twelveTraditions',function (req,res,next) {
-    res.render('twelveTraditions',{title:'12 Traditions',meetingLinks:meetingLinks,activeLink:req.url});
+    res.render('twelveList',{title:'12 Traditions',meetingLinks:meetingLinks,activeLink:req.url,twelveList:twelveTraditions});
+});
+router.get('/twelveSteps',function (req,res,next) {
+    res.render('twelveList',{title:'12 Steps',meetingLinks:meetingLinks,activeLink:req.url,twelveList:twelveSteps});
 });
 router.get('/areaConvention',function (req,res,next) {
     res.render('areaConvention',{title:'Area Convention',meetingLinks:meetingLinks,activeLink:req.url});

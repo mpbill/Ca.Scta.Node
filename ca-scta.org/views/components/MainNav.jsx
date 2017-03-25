@@ -6,9 +6,9 @@ class MainNav extends React.Component{
         super(props);
         this.meetingListItemsMapper=this.meetingListItemsMapper.bind(this);
     }
-    meetingListItemsMapper(m){
-        let linkPath = "/meetings/"+m.link;
-        return <li><ActionLink text={m.text} link={linkPath} activeLink={this.props.activeLink} /></li>;
+    meetingListItemsMapper(key,index){
+        let linkPath = "/meetings/"+key.link;
+        return <li key={index}><ActionLink text={key.text} link={linkPath} activeLink={this.props.activeLink} /></li>;
     }
     render(){
         let meetingListItems = this.props.meetingLinks.map(this.meetingListItemsMapper);
@@ -35,7 +35,13 @@ class MainNav extends React.Component{
                                 </ul>
                             </li>
                             <ActionLink link="/contact" text="Contact" activeLink={this.props.activeLink}/>
-                            <ActionLink link="/twelveTraditions" text="12 Traditions" activeLink={this.props.activeLink}/>
+                            <li className="dropdown">
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="False">12 & 12</a>
+                                <ul className="dropdown-menu">
+                                    <ActionLink link="/twelveSteps" text="12 Steps" activeLink={this.props.activeLink}/>
+                                    <ActionLink link="/twelveTraditions" text="12 Traditions" activeLink={this.props.activeLink}/>
+                                </ul>
+                            </li>
                             <ActionLink link="/areaResources" text="Area Resources" activeLink={this.props.activeLink}/>
                             <ActionLink link="/events" text="Events" activeLink={this.props.activeLink}/>
                             <ActionLink link="/flyers" text="Flyers" activeLink={this.props.activeLink}/>
