@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm-run-all --parallel test:watch open:src lint:watch run-dev-server",
+    "start": "npm-run-all --parallel test:watch open:src lint:watch run-dev-server run-ca-public-website",
     "preinstall": "node  client/tools/nodeVersionCheck.js",
     "setup": "node  client/tools/setup/setupMessage.js && npm install && node client/tools/setup/setup.js",
     "start-message": "babel-node  client/tools/startMessage.js",
@@ -23,7 +23,8 @@
     "test:watch": "npm run test -- --watch",
     "open:cover": "npm run test:cover && open  client/coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./client/tools/analyzeBundle.js",
-    "run-dev-server": "nodemon -e js,json,gql ./api/bin/www"
+    "run-dev-server": "nodemon -e js,json,gql ./api/bin/www",
+    "run-ca-public-website": "nodemon -e js,json,jsx ca-scta.org/bin/www"
   },
   "dependencies": {
     "apollo-client": "1.0.0-rc.6",
@@ -48,6 +49,7 @@
     "jsonwebtoken": "^7.3.0",
     "lokka": "1.7.0",
     "lokka-transport-http": "1.6.1",
+    "moment": "^2.18.1",
     "mongodb": "^2.2.25",
     "morgan": "~1.7.0",
     "mysql": "^2.13.0",
