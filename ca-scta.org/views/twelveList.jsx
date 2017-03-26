@@ -3,8 +3,8 @@ let Layout = require('./layout');
 
 
 class TwelveList extends React.Component{
-    orderedListMap(key,index){
-        return <li key={index}><span dangerouslySetInnerHTML={{__html:key}} /></li>;
+    orderedListMap(i){
+        return <li key={i.id}><span dangerouslySetInnerHTML={{__html:i.text}} /></li>;
     }
     render(){
         return (
@@ -13,7 +13,7 @@ class TwelveList extends React.Component{
                     <h2>{this.props.twelveList.title}</h2>
                     <div className="twelve-list">
                         <ol>
-                            {this.props.twelveList.list.map(this.orderedListMap)}
+                            {this.props.twelveList.items.map(this.orderedListMap)}
                         </ol>
                     </div>
                 </div>

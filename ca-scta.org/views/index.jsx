@@ -1,25 +1,22 @@
 let React = require('react');
 let Layout = require('./layout');
 let moment = require('moment');
-let numberToPrettyNumber=(n)=>{
-    return "(" + n.areaCode + ")" + " " + n.exchangeCode + "-" + n.subscriberNumber;
-};
-let numberToLinkNumber=(n)=>{
-    return "tel:+1" + n.areaCode + n.exchangeCode + n.subscriberNumber;
-};
+let numberToLinkNumber = require('./helpers/numberToLinkNumber');
+let numberToPrettyNumber = require('./helpers/numberToPrettyNumber');
 
 let hotlineMapper = (h)=>{
     return (
         <div className="col-sm-6 col-lg-3">
-        <div className="panel panel-info">
-            <div className="panel-heading">
-                <h3>{h.name }<span className="pull-right"><span className="glyphicon glyphicon-phone" /></span></h3>
-            </div>
-            <div className="panel-body">
-                <h3><a className="link" href={numberToLinkNumber(h)}>{numberToPrettyNumber(h)}</a></h3>
+            <div className="panel panel-info">
+                <div className="panel-heading">
+                    <h3>{h.name }<span className="pull-right"><span className="glyphicon glyphicon-phone" /></span></h3>
+                </div>
+                <div className="panel-body">
+                    <h3><a className="link" href={numberToLinkNumber(h)}>{numberToPrettyNumber(h)}</a></h3>
+                </div>
             </div>
         </div>
-    </div>);
+    );
 };
 
 class Index extends React.Component {

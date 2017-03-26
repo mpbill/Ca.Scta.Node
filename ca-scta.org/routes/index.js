@@ -3,8 +3,9 @@ let router = express.Router();
 let meetingLinks = require('../mock-data/meeting-pages');
 let areaHotlines = require('../mock-data/area-hotlines');
 let nextAreaMeeting = require('../mock-data/next-area-meeting');
-let twelveSteps = require('../mock-data/twelve-steps');
-let twelveTraditions = require('../mock-data/twelve-traditions');
+let twelveStepsTraditions = require('../mock-data/twelve-steps-traditions');
+let twelveTraditions = twelveStepsTraditions.twelveTraditions;
+let twelveSteps = twelveStepsTraditions.twelveSteps;
 let positions = require('../mock-data/positions');
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/contact',function (req,res,next) {
     console.log(req.url);
-    res.render('contact',{title:'Contact',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url,positions:positions});
+    res.render('contact',{title:'Contact',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url,positions:positions,hotlines:areaHotlines});
 });
 router.get('/twelveTraditions',function (req,res,next) {
     res.render('twelveList',{title:'12 Traditions',meetingLinks:meetingLinks,activeLink:req.url,twelveList:twelveTraditions});

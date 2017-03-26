@@ -8,7 +8,7 @@ class MainNav extends React.Component{
     }
     meetingListItemsMapper(key,index){
         let linkPath = "/meetings/"+key.link;
-        return <li key={index}><ActionLink text={key.text} link={linkPath} activeLink={this.props.activeLink} /></li>;
+        return <ActionLink key={index} text={key.text} link={linkPath} activeLink={this.props.activeLink} />;
     }
     render(){
         let meetingListItems = this.props.meetingLinks.map(this.meetingListItemsMapper);

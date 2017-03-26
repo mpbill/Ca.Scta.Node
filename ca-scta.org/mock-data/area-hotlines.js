@@ -9,7 +9,6 @@ function areaHotlineConstructor(areaCode,exchangeCode,subscriberNumber,name) {
         name
     }
 }
-
 let areaHotlines = [
     areaHotlineConstructor("512","339","4357","Austin"),
     areaHotlineConstructor("210","232","6382","San Antonio"),
