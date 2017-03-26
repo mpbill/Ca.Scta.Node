@@ -5,6 +5,27 @@ let React = require('react');
 let MainNav = require('./components/MainNav');
 
  class Layout extends React.Component {
+     renderStyles() {
+         if(!this.props.additionalStyles){
+             return null;
+         }
+         let styles = [];
+         this.props.additionalStyles.forEach((s)=>{
+             styles.push(<link rel="stylesheet" href={s} />);
+         });
+         return styles;
+     }
+     renderScripts(){
+         if(!this.props.additionalScripts){
+             return null;
+         }
+         let scripts=[];
+         this.props.additionalScripts.forEach((s)=>{
+             scripts.push(<script src={s} />);
+         });
+         return scripts;
+     }
+
     render() {
         return (
             <html>
@@ -13,6 +34,7 @@ let MainNav = require('./components/MainNav');
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous" />
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossOrigin="anonymous" />
                 <link rel="stylesheet" href="/stylesheets/site.css" />
+                {this.renderStyles()}
             </head>
             <body>
             <MainNav meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}/>
@@ -42,6 +64,7 @@ let MainNav = require('./components/MainNav');
 
             <script src="https://code.jquery.com/jquery-3.0.0.min.js" />
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossOrigin="anonymous" />
+            {this.renderScripts()}
             </body>
             </html>
         );
