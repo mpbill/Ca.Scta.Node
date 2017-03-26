@@ -5,13 +5,14 @@ let areaHotlines = require('../mock-data/area-hotlines');
 let nextAreaMeeting = require('../mock-data/next-area-meeting');
 let twelveSteps = require('../mock-data/twelve-steps');
 let twelveTraditions = require('../mock-data/twelve-traditions');
+let positions = require('../mock-data/positions');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'CA-SCTA',meetingLinks:meetingLinks,areaHotlines:areaHotlines,nextAreaMeeting:nextAreaMeeting });
 });
 router.get('/contact',function (req,res,next) {
     console.log(req.url);
-    res.render('contact',{title:'Contact',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url});
+    res.render('contact',{title:'Contact',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url,positions:positions});
 });
 router.get('/twelveTraditions',function (req,res,next) {
     res.render('twelveList',{title:'12 Traditions',meetingLinks:meetingLinks,activeLink:req.url,twelveList:twelveTraditions});
