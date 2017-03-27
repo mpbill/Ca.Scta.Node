@@ -1,0 +1,23 @@
+{
+  "changeSetFolder":"Changesets",
+  "dbConfig":{
+    "host": "localhost'"
+    "port": 3307,
+    "user": "root",
+    "password": "password",
+    "database": "scta"
+  },
+  " changeSets":[
+    {
+      "name":"positions",
+      "user":"michael.billingham",
+      "up":"001_positions.up.sql",
+      "down":"001_positions.down.sql"
+    },{
+      "name":"hotlines",
+      "user":"michael.billingham",
+      "up":"002_hotlines.down.sql",
+      "down":"002_hotlines.down.sql"
+    }
+  ]
+}

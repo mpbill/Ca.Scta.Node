@@ -7,6 +7,7 @@ let twelveStepsTraditions = require('../mock-data/twelve-steps-traditions');
 let twelveTraditions = twelveStepsTraditions.twelveTraditions;
 let twelveSteps = twelveStepsTraditions.twelveSteps;
 let positions = require('../mock-data/positions');
+let newsletters = require('../mock-data/newsletters');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'CA-SCTA',meetingLinks:meetingLinks,areaHotlines:areaHotlines,nextAreaMeeting:nextAreaMeeting });
@@ -40,7 +41,7 @@ router.get('/hospitalsAndInstitutions',function (req,res,next) {
     res.render('hospitalsAndInstitutions',{title:'H&I',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url});
 });
 router.get('/newsletter',function (req,res,next) {
-    res.render('newsletter',{title:'Newsletter',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url});
+    res.render('newsletter',{title:'Newsletter',meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url,newsletters:newsletters});
 });
 router.get('/meetings/:name',function (req, res, next) {
     res.render('meetings',{title:req.params.name,meetingLinks:meetingLinks,nextAreaMeeting:nextAreaMeeting,activeLink:req.url});
