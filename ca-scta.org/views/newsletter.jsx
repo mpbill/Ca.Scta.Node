@@ -9,7 +9,7 @@ class Newsletter extends React.Component{
     render(){
         let newsletterListItems=this.props.newsletters.map(Newsletter.newsletterItemMapper);
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}>
                 <h2>Newsletters</h2>
                 <p>To submit content for future letters, email: <a href="mailto:newsletter@ca-scta.org">newsletter@ca-scta.org</a></p>
                 <ul className="list-group">

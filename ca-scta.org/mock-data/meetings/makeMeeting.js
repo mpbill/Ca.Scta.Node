@@ -16,32 +16,9 @@ const dayOfWeekEnum={
     saturday:6
 };
 let makeTime = function (timeString) {
-    let m = moment(timeString,"h:m a");
+    let m = moment(timeString,"h:mma");
     return m.toDate();
 };
-let dayOfWeekEnumToString=function (e) {
-    switch(e) {
-        case 0:
-            return "Sunday";
-        case 1:
-            return "Monday";
-        case 2:
-            return "Tuesday";
-        case 3:
-            return "Wednesday";
-        case 4:
-            return "Thursday";
-        case 5:
-            return "Friday";
-        case 6:
-            return "Saturday";
-        default:
-            throw "Invalid Format";
-    }
-
-};
-
-
 let makeAddress=function(street1,street2,street3,city,state,zip,name,description,mapLink){
     addressId++;
     return {
@@ -82,12 +59,21 @@ let makeMeeting=function (name,address,meetingTimes) {
         meetingTimes:meetingTimes
     }
 };
+let meetingGroupId=0;
+let makeMeetingGroup=function(name,meetings){
+    meetingGroupId++;
+    return {
+        id:meetingGroupId,
+        name:name,
+        meetings:meetings
+    }
+}
 module.exports={
     makeMeeting,
     makeMeetingTime,
     makeMeetingType,
     makeAddress,
     dayOfWeekEnum,
-    dayOfWeekEnumToString,
-    makeTime
+    makeTime,
+    makeMeetingGroup
 };

@@ -24,7 +24,7 @@ class Index extends React.Component {
         let d = moment(this.props.nextAreaMeeting.meetingTime);
         let hotlineCards = this.props.areaHotlines.map(hotlineMapper);
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames}>
                 <div className="row">
                 {hotlineCards}
                     <div className="row">

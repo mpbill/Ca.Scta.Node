@@ -8,7 +8,7 @@ class TwelveList extends React.Component{
     }
     render(){
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}>
                 <div className="row">
                     <h2>{this.props.twelveList.title}</h2>
                     <div className="twelve-list">

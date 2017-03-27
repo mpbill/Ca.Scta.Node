@@ -5,7 +5,7 @@ let Layout = require('./layout');
 class HospitalsAndInstitutions extends React.Component{
     render(){
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}>
                 <h2>Hospitals & Institutions</h2>
                 <p><i>Opportunities to be of service by carrying the message to the addict who still suffers</i></p>
                 <div className="row">

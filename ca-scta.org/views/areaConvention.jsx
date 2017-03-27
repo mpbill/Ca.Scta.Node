@@ -7,7 +7,7 @@ class AreaConvention extends React.Component{
         let aditionalScripts=["/javascripts/convention-clock.js"];
         let additionalStyles =["/stylesheets/timer.css"];
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink} additionalScripts={aditionalScripts} additionalStyles={additionalStyles}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink} additionalScripts={aditionalScripts} additionalStyles={additionalStyles}>
                 <div className="jumbotron">
                     <div className="well">
                         <h2>SCTA Area Convention</h2>

@@ -37,7 +37,7 @@ let MainNav = require('./components/MainNav');
                 {this.renderStyles()}
             </head>
             <body>
-            <MainNav meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}/>
+            <MainNav meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}/>
             <div className="page-wrap">
             <div  className="container-fluid">
                 <div  className="row">

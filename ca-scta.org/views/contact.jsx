@@ -38,7 +38,7 @@ class Contacts extends React.Component{
         let positionsMapped = this.props.positions.map(Contacts.contactMapper);
         let hotlinesMapped = this.props.hotlines.map(Contacts.hotlineMapper);
         return (
-            <Layout title={this.props.title} meetingLinks={this.props.meetingLinks} activeLink={this.props.activeLink}>
+            <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}>
                 <div className="row">
                     <h2>Contact Us</h2>
                     {hotlinesMapped}
