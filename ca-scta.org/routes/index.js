@@ -44,7 +44,6 @@ router.get('/newsletter',function (req,res,next) {
     res.render('newsletter',{title:'Newsletter',nextAreaMeeting:nextAreaMeeting,activeLink:req.url,newsletters:newsletters,meetingGroupNames:meetingsModule.getAllMeetingGroupNames()});
 });
 router.get('/meetings/:name',function (req, res, next) {
-    console.log(req.params.name);
     res.render('meetings',{title:req.params.name,nextAreaMeeting:nextAreaMeeting,activeLink:req.url,meetingGroupNames:meetingsModule.getAllMeetingGroupNames(),meetingGroup:meetingsModule.getMeetingGroupByName(req.params.name)});
 });
 module.exports = router;

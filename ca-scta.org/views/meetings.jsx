@@ -5,16 +5,21 @@ let React = require('react');
 let Layout = require('./layout');
 let moment = require('moment');
 let dayOfWeekEnumToString = require('./helpers/dayOfWeekEnumToString');
+let getAllMeetingTimesForDay = require('./helpers/getAllMeetingsForDay');
+let dayOfWeekEnum = require('../mock-data/meetings/makeMeeting').dayOfWeekEnum;
+let getTimeString = function (d) {
+    let timeString = moment(d).format("h:mmA");
+    let shortTimeString = timeString.slice(0,timeString.length-1);
+    return shortTimeString;
+};
 class Meetings extends React.Component{
     static smallMeetingTimeMapper(t){
-        let timeString = moment(t.time).format("h:mmA");
-        let shortTimeString = timeString.slice(0,timeString.length-1);
         let dayOfWeek = dayOfWeekEnumToString(t.day);
         let typeMappings = t.meetingTypes.map(Meetings.smallMeetingTimeTypeMapper);
         return (
             <div className="list-group-item" key={t.id}>
                 <h4 className="list-group-item-heading">{dayOfWeek}</h4>
-                {shortTimeString}<br />
+                {getTimeString(t.time)}<br />
                 {typeMappings}
             </div>
         )
@@ -22,16 +27,51 @@ class Meetings extends React.Component{
     static smallMeetingTimeTypeMapper(t){
         return <a key={t.id} data-placement="bottom" data-toggle="tooltip" title={t.name}>{t.abbreviation}</a>;
     }
-    metingMapper(m){
+    static meetingTypeMapper(mt) {
+        return (
+            <span key={mt.id}>
+                <a data-placement="bottom" data-toggle="tooltip" title={mt.name}>
+                    {mt.abbreviation}
+                </a><br />
+            </span>
+        );
+    }
+    static largeMeetingTimeTableRowMapper(m){
+        let daysMapped=[];
+        for(let i=0;i<7;i++){
+            let daysMeetingTimes = getAllMeetingTimesForDay(i,m);
+            if(daysMeetingTimes){
+
+                let dayMeetingTypesMapped = daysMeetingTimes.meetingTypes.map(Meetings.meetingTypeMapper);
+                daysMapped.push(<td key={i}>{getTimeString(daysMeetingTimes.time)}<br />{dayMeetingTypesMapped}</td>)
+            }
+            else{
+                daysMapped.push(<td key={i} />);
+            }
+
+        }
+        return (
+            <tr>
+                {daysMapped}
+            </tr>
+        )
+    }
+    static renderDescription(d){
+        if(d){
+            return <span>({d})<br/></span>
+        }
+        return null;
+    }
+    static metingMapper(m){
         return (
             <div className="panel panel-info" key={m.id}>
                 <div className="panel-heading">
-                    <h4 className="meeting-header-text">{m.name}}</h4>
+                    <h4 className="meeting-header-text">{m.name}</h4>
                 </div>
                 <div className="panel-body">
 
                     <address className="address-large">
-                        ({m.address.description})
+                        {Meetings.renderDescription(m.address.description)}
                         {m.address.street1}<br />
                         {m.address.city}, {m.address.state} {m.address.zipCode}<br />
                     </address>
@@ -60,21 +100,7 @@ class Meetings extends React.Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        7:30P<br />
-                                        <a data-placement="bottom" data-toggle="tooltip" title="Beginner&#39;s Meeting">BM</a><br />
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        7:30P<br />
-                                        <a data-placement="bottom" data-toggle="tooltip" title="Beginner&#39;s Meeting">BM</a><br />
-                                    </td>
-                                    <td></td>
-                                </tr>
+                            {Meetings.largeMeetingTimeTableRowMapper(m.meetingTimes)}
                             </tbody>
                         </table>
                     </div>
@@ -87,7 +113,7 @@ class Meetings extends React.Component{
             <Layout title={this.props.title} meetingGroupNames={this.props.meetingGroupNames} activeLink={this.props.activeLink}>
                 <h3>{this.props.title} Meetings</h3>
                 <div className="ca-meetings-wrapper">
-                    
+                    {this.props.meetingGroup.meetings.map(Meetings.metingMapper)}
                 </div>
             </Layout>
         )

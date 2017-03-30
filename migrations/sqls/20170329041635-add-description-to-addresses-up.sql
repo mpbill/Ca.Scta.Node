@@ -1,0 +1,1 @@
+ALTER TABLE addresses ADD description VARCHAR(100);

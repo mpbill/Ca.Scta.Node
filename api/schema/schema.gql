@@ -29,11 +29,37 @@ input HotlineInput{
 }
 
 
+type Address{
+    id:Int!
+    street1:String!
+    street2:String
+    street3:String
+    zipCode:String!
+    city:String!
+    state:String!
+    name:String
+    description:String
+
+}
+input AddressInput {
+    street1:String!
+    street2:String
+    street3:String
+    zipCode:String!
+    city:String!
+    state:String!
+    name:String
+    description:String
+}
+
 type Query {
   getAllPositions:[Position]
   getPositionById(id:Int!):Position
   getAllHotlines:[Hotline]
   getHotlineById(id:Int!):Hotline
+  getAllAddresses:[Address]
+  getAddressById(id:Int!):Address
+
 
 
 }
@@ -43,5 +69,7 @@ type Mutation {
   deletePosition(id:Int!):String
   createHotline(hotline:HotlineInput!):Hotline
   updateHotline(id:Int!,hotline:HotlineInput!):Hotline
-  deleteHotline(id:Int!):Int  
+  deleteHotline(id:Int!):Int
+  upsertAddress(id:Int,address:AddressInput):Address
+  deleteAddress(id:Int!):Address
 }
